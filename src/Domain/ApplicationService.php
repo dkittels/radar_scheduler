@@ -27,7 +27,6 @@ class ApplicationService
 		if (!is_numeric($arguments[0]['user_id'])) {
 			return $this->payload
 				->setStatus(PayloadStatus::NOT_AUTHENTICATED)
-				->setInput($input)
 				->setMessages([
 					'user_id' => 'user_id is not an integer or is not present'
 				]);
@@ -38,7 +37,6 @@ class ApplicationService
 		} catch (Exception $e) {
 			return $this->payload
 				->setStatus(PayloadStatus::NOT_VALID)
-				->setInput($input)
 				->setMessages([
 					'user_id' => 'user_id is not valid'
 				]);
@@ -48,11 +46,11 @@ class ApplicationService
 			if (in_array($method, $this->manager_actions) && !$this->user->isManager()) {
 				return $this->payload
 					->setStatus(PayloadStatus::NOT_VALID)
-					->setInput($input)
 					->setMessages([
 						'user' => $user->name . ' is not authorized for this request'
 					]);
 			}
+			
             return call_user_func_array(array($this,$method),$arguments);
         }
 	}
@@ -295,8 +293,8 @@ class ApplicationService
 				
 		foreach ($shifts as $shift) {
 			$row = array();
-			$row['start_date'] = $shift['start_time'];
-			$row['end_date'] = $shift['end_time'];
+			$row['start_time'] = $shift['start_time'];
+			$row['end_time'] = $shift['end_time'];
 			$row['co-workers'] = array();
 
 			$user_start = strtotime($shift['start_time']);

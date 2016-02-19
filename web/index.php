@@ -32,14 +32,14 @@ $adr->middle('Radar\Adr\Handler\ActionHandler');
  */
  
 
-$adr->put('UpdateShift', '/shift/{id}', ['Scheduler\Domain\ApplicationService', 'updateShift']);
-$adr->post('CreateShift', '/createShift', ['Scheduler\Domain\ApplicationService', 'createShift']);
 $adr->get('Shift', '/shift/{id}', ['Scheduler\Domain\ApplicationService', 'readShift']);
 $adr->get('User', '/user/{id}', ['Scheduler\Domain\ApplicationService', 'readUser']);
 $adr->get('ReadSchedule', '/readSchedule', ['Scheduler\Domain\ApplicationService', 'readSchedule']);
 $adr->get('ReadUserSchedule', '/readUserSchedule', ['Scheduler\Domain\ApplicationService', 'readUserSchedule']);
 $adr->get('ReadUserWeeklyHours', '/readUserWeeklyHours', ['Scheduler\Domain\ApplicationService', 'readUserWeeklyHours']);
 $adr->get('ReadCoworkers', '/readCoworkers', ['Scheduler\Domain\ApplicationService', 'readCoworkers']);
+$adr->post('CreateShift', '/createShift', ['Scheduler\Domain\ApplicationService', 'createShift']);
+$adr->put('UpdateShift', '/shift/{id}', ['Scheduler\Domain\ApplicationService', 'updateShift']);
  
 /**
  * Run

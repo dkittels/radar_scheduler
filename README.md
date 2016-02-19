@@ -1,32 +1,38 @@
-# Radar
+# Radar Scheduler
 
-Radar is a PSR-7 compliant [Action-Domain-Responder](http://pmjones.io/adr)
-(ADR) system. While it may look like a micro-framework, it is more like a
-wrapper around the real core of your application domain.
+This scheduler API is a sample coding project for [When-I-Work](https://github.com/wheniwork/standards/blob/master/project.md).
+It's meant for demonstration purposes and not intended as a larger project. It's
+built using the [Radar ADR System](https://github.com/radarphp/Radar.Project) as a
+wrapper with the goal of covering the user stories listed in the original coding project's
+documentation.
 
-## Installing Radar
+## Starting With Scheduler
 
-You will need [Composer](https://getcomposer.org) to install Radar.
+A sample mysql database is included in the file scheduler_api.sql.  The database includes
+the tables described in the project documentation as well as a modest set of sample
+data.  After you import this to a local database of your choosing, you can configure
+the database connection settings in [src/Domain/DB.php](src/Domain/DB.php).
 
-Pick a project name, and use Composer to create it with Radar; here we create
-one called `example-project`:
+After that, get the php server running by going to the project directory
+in command line and entering
 
-    composer create-project -s dev radar/project example-project
-
-Confirm the installation by changing into the project directory and starting the
-built-in PHP web server:
-
-    cd example-project
     php -S localhost:8080 -t web/
+    
+From here the API should be running at http://localhost:8080/.  To make
+sure things are running as expected, try going to [http://localhost:8080/shift/1?user_id=5](http://localhost:8080/shift/1?user_id=5)!
 
-You can then browse to <http://localhost:8080/> and see JSON output:
+You should see something along the lines of
 
-    {"phrase":"Hello world"}
-
-You can also browse to <http://localhost:8080/your-name> and see modified JSON output:
-
-    {"phrase":"Hello your-name"}
+    {
+      "id": "1",
+      "manager_id": "5",
+      "employee_id": "1",
+      "break": "1",
+      "start_time": "2016-03-01 08:00:00",
+      "end_time": "2016-03-01 12:00:00",
+      "error_message": null
+    }
 
 ## Documentation
 
-You can read the documentation [here](docs/index.md).
+API Documentation can be found [here](docs/index.md).
